@@ -5,12 +5,12 @@ import { Box as BoxStyled } from './styles';
 
 function Dashboard() {
   const [pokemon, setPokemon] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPokemon, setCurrentPokemon] = useState(0);
 
   /* pokemons */
   useEffect(() => {
     async function getItems() {
-      const { data } = await api.get(`/pokemon/?offset=0&limit=${currentPage + 20}`);
+      const { data } = await api.get(`/pokemon/?offset=0&limit=${currentPokemon + 20}`);
 
       const resp = await Promise.all(data.results.map((item) => api.get(item.url)));
 
@@ -19,13 +19,13 @@ function Dashboard() {
     }
 
     getItems();
-  }, [currentPage]);
+  }, [currentPokemon]);
 
   /* scroll Infinity */
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
-        setCurrentPage((currentPageInsideState) => currentPageInsideState + 20);
+        setCurrentPokemon((currentPokemonInsideState) => currentPokemonInsideState + 20);
       }
     });
 
@@ -42,8 +42,7 @@ function Dashboard() {
         {
             pokemon.length > 0 && pokemon.map((item) => (
               <div key={item.id}>
-                {item.name}
-
+                Nº{item.id}: {item.name}
                 <img src={item.sprites.front_default} alt={item.name} />
               </div>
             ))
