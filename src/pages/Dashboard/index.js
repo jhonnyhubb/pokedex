@@ -36,7 +36,7 @@ function Dashboard() {
 
   return (
     <div>
-      <Text as="h1">Pokemon</Text>
+      <Text as="h1">Pokedex</Text>
       <Text>Search for Pokémon by name or using the National Pokédex number</Text>
       <BoxStyled>
         {
