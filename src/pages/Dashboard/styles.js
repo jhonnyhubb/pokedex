@@ -11,3 +11,43 @@ export const Box = styled.div`
     justify-content: space-between;
   }
 `;
+
+export const Search = styled.div`
+  position: absolute;
+  top: 5em;
+  right: 10em;
+  width: 30em;
+`;
+
+export const Label = styled.label`
+
+`;
+
+export const Input = styled.input`
+  width: 18em;
+  padding: 9px;
+  margin: 8px 0;
+  box-sizing: border-box;
+`;
+
+export const Button = styled.button`
+  background-color: #eae874;
+  transition-duration: 0.4s;
+  border: none;
+  color: black;
+  padding: 10px 16px;
+  margin-left: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  border: 0.1px solid #271207;
+
+  &:hover {
+    background-color: #e6c02c;
+  }
+  &:active {
+    background-color: #847770;
+  }
+`;

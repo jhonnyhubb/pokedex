@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Text from '../../components/Text';
 import api from '../../services/api';
 import { Box as BoxStyled } from './styles';
+import * as styles from './styles';
 
 function Dashboard() {
   const [pokemon, setPokemon] = useState([]);
@@ -38,6 +39,16 @@ function Dashboard() {
     <div>
       <Text as="h1">Pokedex</Text>
       <Text>Search for Pokémon by name or using the National Pokédex number</Text>
+      <styles.Search>
+        <styles.Label htmlFor="query" />
+        <styles.Input
+          type="text"
+          name="query"
+          id="query"
+        />
+        <styles.Button>Search</styles.Button>
+        <styles.Button>Clear</styles.Button>
+      </styles.Search>
       <BoxStyled>
         {
             pokemon.length > 0 && pokemon.map((item) => (

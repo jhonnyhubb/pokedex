@@ -10,6 +10,6 @@ export default createGlobalStyle`
     body {
         font-family: 'Montserrat', sans-serif;
         font-family: 'Roboto', sans-serif;
-        background: #ddd;
+        background: #e5e5e5;
     }
 `;
