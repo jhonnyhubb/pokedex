@@ -9,6 +9,7 @@ function Dashboard() {
   const [query, setQuery] = useState('');
   const [pokemon, setPokemon] = useState([]);
   const [searchForPokemon, setSearchForPokemon] = useState([]);
+  const [searchPokemonImg, setSearchPokemonImg] = useState('');
   const [currentPokemon, setCurrentPokemon] = useState(0);
 
   const handleClear = () => {
@@ -22,7 +23,7 @@ function Dashboard() {
       const response = await api.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
 
       setSearchForPokemon(response.data);
-      console.log(searchForPokemon);
+      setSearchPokemonImg(searchForPokemon.sprites.front_default);
     } catch (error) {
       console.log('i dont find:', error);
     }
@@ -82,6 +83,7 @@ function Dashboard() {
       <BoxStyled>
         <div key={searchForPokemon.id}>
           Nº{searchForPokemon.id}: {searchForPokemon.name}
+          <img src={searchPokemonImg} alt={searchForPokemon.name} />
         </div>
       </BoxStyled>
       <BoxStyled>
