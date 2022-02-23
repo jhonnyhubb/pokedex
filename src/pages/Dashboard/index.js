@@ -82,7 +82,6 @@ function Dashboard() {
       <BoxStyled>
         <div key={searchForPokemon.id}>
           Nº{searchForPokemon.id}: {searchForPokemon.name}
-          <img src={searchForPokemon.sprites.front_default} alt={searchForPokemon.name} />
         </div>
       </BoxStyled>
       <BoxStyled>
