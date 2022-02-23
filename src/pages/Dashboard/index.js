@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import Text from '../../components/Text';
 import api from '../../services/api';
@@ -5,10 +6,37 @@ import { Box as BoxStyled } from './styles';
 import * as styles from './styles';
 
 function Dashboard() {
+  const [query, setQuery] = useState('');
   const [pokemon, setPokemon] = useState([]);
+  const [searchForPokemon, setSearchForPokemon] = useState([]);
   const [currentPokemon, setCurrentPokemon] = useState(0);
 
+  const handleClear = () => {
+    setQuery('');
+  };
+
   /* pokemons */
+  // eslint-disable-next-line no-shadow
+  const loadPokemon = async (query = '') => {
+    try {
+      const response = await api.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
+
+      setSearchForPokemon(response.data);
+      console.log(searchForPokemon);
+    } catch (error) {
+      console.log('i dont find:', error);
+    }
+  };
+
+  // eslint-disable-next-line no-shadow
+  const searchPokemon = (query) => {
+    loadPokemon(query);
+  };
+
+  const handleSearch = () => {
+    searchPokemon(query);
+  };
+
   useEffect(() => {
     async function getItems() {
       const { data } = await api.get(`/pokemon/?offset=0&limit=${currentPokemon + 20}`);
@@ -45,18 +73,26 @@ function Dashboard() {
           type="text"
           name="query"
           id="query"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         />
-        <styles.Button>Search</styles.Button>
-        <styles.Button>Clear</styles.Button>
+        <styles.Button onClick={handleSearch}>Search</styles.Button>
+        <styles.Button onClick={handleClear}>Clear</styles.Button>
       </styles.Search>
       <BoxStyled>
+        <div key={searchForPokemon.id}>
+          Nº{searchForPokemon.id}: {searchForPokemon.name}
+          <img src={searchForPokemon.sprites.front_default} alt={searchForPokemon.name} />
+        </div>
+      </BoxStyled>
+      <BoxStyled>
         {
-            pokemon.length > 0 && pokemon.map((item) => (
-              <div key={item.id}>
-                Nº{item.id}: {item.name}
-                <img src={item.sprites.front_default} alt={item.name} />
-              </div>
-            ))
+          pokemon.map((item) => (
+            <div key={item.id}>
+              Nº{item.id}: {item.name}
+              <img src={item.sprites.front_default} alt={item.name} />
+            </div>
+          ))
         }
       </BoxStyled>
       <p id="scroll-infinite-down" />

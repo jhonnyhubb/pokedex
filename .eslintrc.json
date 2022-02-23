@@ -18,6 +18,8 @@
         "react"
     ],
     "rules": {
+        "eslint-disable-next-line": 0,
+        "no-console": 0,
         "linebreak-style": 0,
         "eol-last": 0,
         "react/react-in-jsx-scope": "off",

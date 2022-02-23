@@ -27,11 +27,12 @@ export const Input = styled.input`
   width: 18em;
   padding: 9px;
   margin: 8px 0;
-  box-sizing: border-box;
+  border-radius: 10px;
+  border: 0.1px solid #1a1c06;
 `;
 
 export const Button = styled.button`
-  background-color: #eae874;
+  background-color: #e5d7b7;
   transition-duration: 0.4s;
   border: none;
   color: black;
@@ -43,11 +44,12 @@ export const Button = styled.button`
   font-size: 14px;
   font-weight: bold;
   border: 0.1px solid #271207;
+  border-radius: 10px;
 
   &:hover {
-    background-color: #e6c02c;
+    background-color: #b8b98d;
   }
   &:active {
-    background-color: #847770;
+    background-color: #797974;
   }
 `;
