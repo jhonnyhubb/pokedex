@@ -3,41 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Text from '../../components/Text';
 import api from '../../services/api';
 import { Box as BoxStyled } from './styles';
-import * as styles from './styles';
+import Search from '../../components/Search/search';
 
 function Dashboard() {
-  const [query, setQuery] = useState('');
   const [pokemon, setPokemon] = useState([]);
-  const [searchForPokemon, setSearchForPokemon] = useState([]);
-  const [searchPokemonImg, setSearchPokemonImg] = useState('');
   const [currentPokemon, setCurrentPokemon] = useState(0);
 
-  const handleClear = () => {
-    setQuery('');
-  };
-
   /* pokemons */
-  // eslint-disable-next-line no-shadow
-  const loadPokemon = async (query = '') => {
-    try {
-      const response = await api.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
-
-      setSearchForPokemon(response.data);
-      setSearchPokemonImg(searchForPokemon.sprites.front_default);
-    } catch (error) {
-      console.log('i dont find:', error);
-    }
-  };
-
-  // eslint-disable-next-line no-shadow
-  const searchPokemon = (query) => {
-    loadPokemon(query);
-  };
-
-  const handleSearch = () => {
-    searchPokemon(query);
-  };
-
   useEffect(() => {
     async function getItems() {
       const { data } = await api.get(`/pokemon/?offset=0&limit=${currentPokemon + 20}`);
@@ -68,24 +40,7 @@ function Dashboard() {
     <div>
       <Text as="h1">Pokedex</Text>
       <Text>Search for Pokémon by name or using the National Pokédex number</Text>
-      <styles.Search>
-        <styles.Label htmlFor="query" />
-        <styles.Input
-          type="text"
-          name="query"
-          id="query"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <styles.Button onClick={handleSearch}>Search</styles.Button>
-        <styles.Button onClick={handleClear}>Clear</styles.Button>
-      </styles.Search>
-      <BoxStyled>
-        <div key={searchForPokemon.id}>
-          Nº{searchForPokemon.id}: {searchForPokemon.name}
-          <img src={searchPokemonImg} alt={searchForPokemon.name} />
-        </div>
-      </BoxStyled>
+      <Search />
       <BoxStyled>
         {
           pokemon.map((item) => (

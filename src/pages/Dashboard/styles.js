@@ -12,11 +12,20 @@ export const Box = styled.div`
   }
 `;
 
+export const BoxSearch = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 15px 15px;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
 export const Search = styled.div`
-  position: absolute;
-  top: 5em;
-  right: 10em;
-  width: 30em;
+  text-align: center;
 `;
 
 export const Label = styled.label`
@@ -24,7 +33,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 18em;
+  width: 50%;
   padding: 9px;
   margin: 8px 0;
   border-radius: 10px;
