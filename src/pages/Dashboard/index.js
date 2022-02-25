@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Text from '../../components/Text';
 import api from '../../services/api';
-import { Box as BoxStyled } from './styles';
+import { Box as BoxStyled, Info } from './styles';
 import Search from '../../components/Search/search';
 
 function Dashboard() {
@@ -27,7 +27,7 @@ function Dashboard() {
   useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
-        setCurrentPokemon((currentPokemonInsideState) => currentPokemonInsideState + 20);
+        setCurrentPokemon((currentPokemonInsideState) => currentPokemonInsideState + 21);
       }
     });
 
@@ -45,7 +45,10 @@ function Dashboard() {
         {
           pokemon.map((item) => (
             <div key={item.id}>
-              Nº{item.id}: {item.name}
+              <Info key={item.id}>
+                <p>Nº{item.id}: {item.name}</p>
+                <p>Type: {item.types[0].type.name}</p>
+              </Info>
               <img src={item.sprites.front_default} alt={item.name} />
             </div>
           ))

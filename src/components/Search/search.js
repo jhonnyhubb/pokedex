@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
-import { BoxSearch as BoxStyledSearch } from '../../pages/Dashboard/styles';
+import { BoxSearch as BoxStyledSearch, Info } from '../../pages/Dashboard/styles';
 import * as styles from '../../pages/Dashboard/styles';
 
 function Search() {
@@ -17,7 +17,6 @@ function Search() {
   const loadPokemon = async (response) => {
     try {
       setSearchForPokemon(response.data);
-
       setSearchPokemonImg(searchForPokemon.sprites.front_default);
     } catch (error) {
       console.log(error);
@@ -57,7 +56,14 @@ function Search() {
       {searchPokemonImg !== '' ? (
         <BoxStyledSearch>
           <div key={searchForPokemon.id}>
-            Nº{searchForPokemon.id}: {searchForPokemon.name}
+            <Info>
+              <p>
+                Nº{searchForPokemon.id}: {searchForPokemon.name}
+              </p>
+              <p>
+                Type: {searchForPokemon.types[0].type.name}
+              </p>
+            </Info>
             <img src={searchPokemonImg} alt={searchForPokemon.name} />
           </div>
         </BoxStyledSearch>

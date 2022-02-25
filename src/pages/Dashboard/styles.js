@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// box of pokemons
 export const Box = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -7,20 +8,40 @@ export const Box = styled.div`
 
   > div {
     display: flex;
+    grid-auto-rows: auto;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid #797974;
+    border-radius: 10px;
+    padding: 0 10px 0;
   }
 `;
 
+export const Info = styled.div`
+  display: grid;
+  > p {
+    margin-top: .2em;
+    margin-bottom: .2em;
+
+  }
+`;
+
+// box of pokemons
+
+// search
 export const BoxSearch = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 15px 15px;
+  margin: 15px 0 15px;
 
   > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid #797974;
+    border-radius: 10px;
+    padding: 0 10px 0;
   }
 `;
 
@@ -62,3 +83,5 @@ export const Button = styled.button`
     background-color: #797974;
   }
 `;
+
+// search
